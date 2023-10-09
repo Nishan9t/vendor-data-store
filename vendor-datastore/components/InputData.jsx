@@ -1,8 +1,10 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function InputData() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     vendorName: '',
     bankAccountno: '',
@@ -23,11 +25,12 @@ export default function InputData() {
     e.preventDefault();
     // Handle form submission logic here
     console.log(formData);
+    router.push("/read")
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-4">Vendor Information</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center">Vendor Information</h2>
       <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">Vendor Name</label>
@@ -43,8 +46,8 @@ export default function InputData() {
 
           <label className="block text-sm font-medium text-gray-600">Bank Account Number</label>
           <input
-            type="text"
-            name="bankaccountno"
+            type="number"
+            name="bankAccountno"
             value={formData.bankAccountno}
             onChange={handleInputChange}
             className="mt-1 p-2 w-full border rounded-md"
@@ -110,7 +113,7 @@ export default function InputData() {
 
           <label className="block text-sm font-medium text-gray-600">Zip Code</label>
           <input
-            type="text"
+            type="number"
             name="zipcode"
             value={formData.zipcode}
             onChange={handleInputChange}

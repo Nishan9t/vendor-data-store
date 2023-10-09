@@ -6,12 +6,13 @@ import { useState } from 'react';
 import SinginBtn from './SinginBtn'
 import { useSession } from 'next-auth/react'
 import InputData from './InputData';
+import Link from 'next/link';
 
 
 
 export default function Vendor() {
 
-    const [create,setCreate]=useState(false)
+ 
     const {status, data:session} = useSession();
 
     if(status==='authenticated')
@@ -27,12 +28,9 @@ export default function Vendor() {
                 
                 </div>
                 <div className='mx-auto text-center mt-16'>
-                {
-                    !create?
-                    <button onClick={()=>setCreate(true)} className='bg-green-500 text-white px-4 py-3'>Create Vendor</button>
-                    :
-                    <InputData/>
-                }
+               
+                    <Link href="/create" className='bg-green-500 text-white px-4 py-3'>Create Vendor</Link>
+                   
                     
                 </div>
         </div>
