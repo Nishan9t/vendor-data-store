@@ -11,12 +11,9 @@ export default function Create() {
   const router=useRouter();
 
 
-    // if(status !=='authenticated')
-    // {
-      
-    
- 
-    // }
+  // if (status === "unauthenticated") {
+  //   return <p>Access Denied</p>
+  // }
  
 
   return (
