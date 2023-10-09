@@ -1,3 +1,5 @@
+import { connectMongoDB } from "@/lib/mongodb";
+import User from "@/models/user";
 import NextAuth from "next-auth/next";
 
 import GoogleProvider from 'next-auth/providers/google';
@@ -17,9 +19,17 @@ const authOptions={
 
             if(account.provider==='google')
             {
+
                 const {name,email}=user;
                 try{
-                    const res=await fetch("http://localhost:3000/api/user",{
+
+                    await connectMongoDB();
+
+                    const userExists=await User.findOne({email});
+                    
+                    if(!userExists)
+                    {
+                        const res=await fetch("http://localhost:3000/api/user",{
                         method:"POST",
                         headers:{
                             "Content-type":"application/json",
@@ -30,9 +40,11 @@ const authOptions={
                         })
                     });
 
-                    if(res.ok){
-                        return user;
+                        if(res.ok){
+                            return user;
+                        }
                     }
+                    
 
                 }
                 catch(error)
