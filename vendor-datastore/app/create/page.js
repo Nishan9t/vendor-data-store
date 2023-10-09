@@ -11,11 +11,12 @@ export default function Create() {
   const router=useRouter();
 
 
-    if(status !=='authenticated')
-    {
-      router.push('/')
-      return null;
-    }
+    // if(status !=='authenticated')
+    // {
+      
+    
+ 
+    // }
  
 
   return (

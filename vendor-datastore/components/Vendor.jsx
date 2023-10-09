@@ -27,12 +27,16 @@ export default function Vendor() {
                     </div>
                 
                 </div>
-                <div className='mx-auto text-center mt-16'>
-               
-                    <Link href="/create" className='bg-green-500 text-white px-4 py-3'>Create Vendor</Link>
-                   
-                    
+
+                <div className='flex flex-col mt-16 text-center justify-center'>
+                    <div className='mb-16'>           
+                        <Link href="/create" className='bg-green-500 text-white px-4 py-3 '>Create Vendor</Link>
+                    </div>
+                    <div  className=''>
+                        <Link href="/read" className='bg-green-500 text-white px-4 py-3 '>Show All Vendors</Link>
+                    </div>
                 </div>
+               
         </div>
         );
     }

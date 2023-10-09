@@ -1,7 +1,7 @@
 import mongoose, { Schema, models } from "mongoose";
 
 const vendorSchema= new Schema({
-    email:{
+    creatorEmail:{
         type:String,
         required:true
     },
@@ -13,7 +13,7 @@ const vendorSchema= new Schema({
         type:String,
         required:true
     },
-    bankAccountNo:{
+    bankAccountno:{
         type:Number,
         required:true
     },
@@ -37,7 +37,7 @@ const vendorSchema= new Schema({
         type:String,
         required:true
     },
-    zipCode:{
+    zipcode:{
         type:Number,
         required:true
     },
@@ -47,6 +47,6 @@ const vendorSchema= new Schema({
 {timestamps:true}
 );
 
-const Vendor = models.Vendor || mongoose.model("Vendor",vendorSchema);
+const vendorModel = models.Vendor || mongoose.model("Vendor",vendorSchema);
 
-export default Vendor;
+export default vendorModel;

@@ -1,11 +1,18 @@
 'use client'
 
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+
 export default function InputData() {
+
+  const {data:session}=useSession();
+
   const router = useRouter();
   const [formData, setFormData] = useState({
+    creatorEmail:session?.user?.email,
+    creatorName:session?.user?.name,
     vendorName: '',
     bankAccountno: '',
     bankName: '',
@@ -21,11 +28,36 @@ export default function InputData() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log(formData);
-    router.push("/read")
+
+  
+    
+    console.log(JSON.stringify(formData));
+
+    try{
+      const res=await fetch("http://localhost:3000/api/post/create",{
+      method:"POST",
+      headers:{
+          "Content-type":"application/json",
+      },
+      body: JSON.stringify(formData)
+    });
+
+      if(res.ok){
+          // return user;
+
+          router.push("/read")
+
+      }
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
+    
+    
   };
 
   return (
