@@ -10,6 +10,7 @@ import DeleteButton from "./DeleteButton";
 const fetchAllVendors=async()=>{
     try{
       const response=await fetch("https://vendor-data-store.vercel.app/api/post/read",{
+        method:"GET",
         cache:"no-store",
       });
   

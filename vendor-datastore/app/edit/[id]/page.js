@@ -5,6 +5,7 @@ const getVendorById=async(id)=>{
   try{
     const res = await fetch(`https://vendor-data-store.vercel.app/api/post/${id}`,
     {
+      method:"GET",
       cache:'no-store',
     });
 
