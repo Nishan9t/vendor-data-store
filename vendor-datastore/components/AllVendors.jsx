@@ -35,8 +35,8 @@ const fetchAllVendors=async()=>{
 
 export default async function AllVendors(){
 
-    const vendors = await fetchAllVendors();
-
+    const {vendors} = await fetchAllVendors();
+    const data=vendors;
 
     return(
         <div className="">
@@ -47,8 +47,8 @@ export default async function AllVendors(){
 
         <div className=" my-16 flex-wrap">
         {
-          vendors.length>0 ?
-            vendors.map(vendor =>{
+          data.length>0 ?
+            data.map(vendor =>{
                 return(
                   
                       <div  key={vendor._id} className="p-4 border-2 w-full shadow-md mb-4 rounded-md flex justify-between">
