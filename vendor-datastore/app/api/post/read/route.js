@@ -8,7 +8,7 @@ export async function GET(){
   
    
     await connectMongoDB();
-    const vendors=await vendorModel.find();
+    const vendors=await vendorModel.find({});
     // console.log(data)
      return NextResponse.json({vendors});
 }
