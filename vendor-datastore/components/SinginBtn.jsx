@@ -11,6 +11,7 @@ export default function SinginBtn() {
     <Image src='/google-image.png'
         height={30}
         width={30}
+        alt="G"
     />
     <h1 className='bg-blue-500 text-white px-4 py-3'>Sign in with Google</h1>
     
