@@ -1,11 +1,14 @@
 "use client"
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 export default function EditData({id,vendor}) {
 
+  const router = useRouter()
   const {session}=useSession();
+
     const [formData, setFormData] = useState({
         creatorEmail:session?.user?.email,
         creatorName:session?.user?.name,
@@ -26,8 +29,28 @@ export default function EditData({id,vendor}) {
 
       const handleUpdate = async(e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('update data')
+        try{
+          const res=await fetch(`http://localhost:3000/api/post/${id}`,{
+          method:"PUT",
+          headers:{
+              "Content-type":"application/json",
+          },
+          body: JSON.stringify(formData)
+        });
+    
+          if(!res.ok)
+          {
+            throw new Error('failed to update vendor')
+          }
+          router.refresh();
+          router.push("/read")
+  
+        }
+        catch(error)
+        {
+          console.log(error)
+        }
+        
       }
 
   return (
@@ -129,7 +152,7 @@ export default function EditData({id,vendor}) {
         {/* ... */}
         <div className="mt-4">
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
-            Submit
+            Update
           </button>
         </div>
       </form>

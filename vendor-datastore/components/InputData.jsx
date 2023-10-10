@@ -47,7 +47,7 @@ export default function InputData() {
 
       if(res.ok){
           // return user;
-
+          router.refresh();
           router.push("/read")
 
       }

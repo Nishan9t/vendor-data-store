@@ -1,7 +1,8 @@
 
 import Link from "next/link";
 import {FaRegEdit} from 'react-icons/fa'
-import {RiDeleteBin6Line} from 'react-icons/ri'
+import DeleteButton from "./DeleteButton";
+
 
 
 const fetchAllVendors=async()=>{
@@ -27,6 +28,11 @@ const fetchAllVendors=async()=>{
  }
 
 
+ const handleDelete=(id)=>{
+ console.log(id)
+ }
+
+
 export default async function AllVendors(){
 
     const {vendors} = await fetchAllVendors()
@@ -40,11 +46,12 @@ export default async function AllVendors(){
 
         <div className=" my-16 flex-wrap">
         {
+          vendors.length>0 ?
             vendors.map(vendor =>{
                 return(
                   
                       <div className="p-4 border-2 w-full shadow-md mb-4 rounded-md flex justify-between">
-                        <div>
+                        <div key={vendor._id}>
                         <h1 className="text-lg font-bold ">Name : {vendor.vendorName}  </h1>
                         <h1 className="text-lg font-bold ">Bank Account Number : {vendor.bankAccountno} </h1>
                         <h1 className="text-lg font-bold ">Bank Name : {vendor.bankName}</h1>
@@ -58,7 +65,7 @@ export default async function AllVendors(){
 
                         <div className="flex flex-col">
                         <Link href={`/edit/${vendor._id}`}><button className=" text-blue-700 text-xl"><FaRegEdit/></button></Link>
-                        <Link href={'/'}><button className="text-red-700 text-xl"><RiDeleteBin6Line/></button></Link>
+                        <DeleteButton id={vendor._id}/>
                         </div>
                       
                       </div>
@@ -67,6 +74,10 @@ export default async function AllVendors(){
 
                 )
             })
+            :
+           
+            <h1 className="text-xl font-bold text-red-600">no vendor is created</h1>
+           
         }
           
        
