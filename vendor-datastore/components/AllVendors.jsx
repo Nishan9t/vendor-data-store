@@ -1,7 +1,9 @@
 
+
 import Link from "next/link";
 import {FaRegEdit} from 'react-icons/fa'
 import DeleteButton from "./DeleteButton";
+
 
 
 
@@ -28,14 +30,12 @@ const fetchAllVendors=async()=>{
  }
 
 
- const handleDelete=(id)=>{
- console.log(id)
- }
 
 
 export default async function AllVendors(){
 
-    const {vendors} = await fetchAllVendors()
+    const {vendors} = await fetchAllVendors();
+
 
     return(
         <div className="">
@@ -50,8 +50,8 @@ export default async function AllVendors(){
             vendors.map(vendor =>{
                 return(
                   
-                      <div className="p-4 border-2 w-full shadow-md mb-4 rounded-md flex justify-between">
-                        <div key={vendor._id}>
+                      <div  key={vendor._id} className="p-4 border-2 w-full shadow-md mb-4 rounded-md flex justify-between">
+                        <div>
                         <h1 className="text-lg font-bold ">Name : {vendor.vendorName}  </h1>
                         <h1 className="text-lg font-bold ">Bank Account Number : {vendor.bankAccountno} </h1>
                         <h1 className="text-lg font-bold ">Bank Name : {vendor.bankName}</h1>
