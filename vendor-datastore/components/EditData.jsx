@@ -3,21 +3,20 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 
-export default function EditData() {
+export default function EditData({id,vendor}) {
 
-  const {data:session}=useSession();
-
+  const {session}=useSession();
     const [formData, setFormData] = useState({
         creatorEmail:session?.user?.email,
         creatorName:session?.user?.name,
-        vendorName: '',
-        bankAccountno: '',
-        bankName: '',
-        addressLine1: '',
-        addressLine2: '',
-        city: '',
-        country: '',
-        zipcode: ''
+        vendorName: vendor.vendorName,
+        bankAccountno: vendor.bankAccountno ,
+        bankName: vendor.bankName,
+        addressLine1: vendor.addressLine1,
+        addressLine2: vendor.addressLine2,
+        city: vendor.city,
+        country: vendor.country,
+        zipcode: vendor.zipcode
       });
 
       const handleInputChange = (e) => {
@@ -25,16 +24,16 @@ export default function EditData() {
         setFormData({ ...formData, [name]: value });
       };
 
-      const handleSubmit = async(e) => {
+      const handleUpdate = async(e) => {
         e.preventDefault();
         // Handle form submission logic here
-
+        console.log('update data')
       }
 
   return (
      <div className="container mx-auto p-4">
       <h2 className="text-2xl font-semibold mb-4 text-center">Vendor Information Edit</h2>
-      <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+      <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">Vendor Name</label>
           <input

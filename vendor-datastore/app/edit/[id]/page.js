@@ -1,11 +1,39 @@
 import EditData from "@/components/EditData";
 
+const getVendorById=async(id)=>{
+  'use client'
+  try{
+    const res = await fetch(`http://localhost:3000/api/post/${id}`,
+    {
+      cache:'no-store',
+    });
 
-export default function Edit({params}) {
+    if(!res.ok)
+    {
+      throw new Error('failed to fetch vendor')
+    }
+  
+    return res.json();
+
+
+  }
+  catch(error)
+  {
+    console.log(error);
+  }
+}
+
+
+export default async function Edit({params}) {
 
   const {id}=params;
-  console.log(id);
+  // console.log(id);
+
+  const {vendor}=await getVendorById(id)
+  // const {vendorName,bankAccountno,bankName,addressLine1,addressLine2,city,country,zipcode,creatorEmail,creatorName}= vendor;
+  // console.log(vendorName);
+  // console.log(vendor);
   return (
-   <EditData/>
+   <EditData id={id} vendor={vendor} />
   )
 }
