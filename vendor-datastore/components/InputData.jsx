@@ -37,7 +37,7 @@ export default function InputData() {
     console.log(JSON.stringify(formData));
 
     try{
-      const res=await fetch("http://localhost:3000/api/post/create",{
+      const res=await fetch("https://vendor-data-store.vercel.app/api/post/create",{
       method:"POST",
       headers:{
           "Content-type":"application/json",

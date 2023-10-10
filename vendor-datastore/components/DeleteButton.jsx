@@ -11,7 +11,7 @@ export default function DeleteButton({id}){
 
         if(confirmed)
         {
-           const res= await fetch(`http://localhost:3000/api/post/delete?id=${id}` , {
+           const res= await fetch(`https://vendor-data-store.vercel.app/api/post/delete?id=${id}` , {
                 method:"DELETE",
             });
 

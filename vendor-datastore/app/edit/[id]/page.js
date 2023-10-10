@@ -3,7 +3,7 @@ import EditData from "@/components/EditData";
 const getVendorById=async(id)=>{
   'use client'
   try{
-    const res = await fetch(`http://localhost:3000/api/post/${id}`,
+    const res = await fetch(`https://vendor-data-store.vercel.app/api/post/${id}`,
     {
       cache:'no-store',
     });

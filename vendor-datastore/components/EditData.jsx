@@ -30,7 +30,7 @@ export default function EditData({id,vendor}) {
       const handleUpdate = async(e) => {
         e.preventDefault();
         try{
-          const res=await fetch(`http://localhost:3000/api/post/${id}`,{
+          const res=await fetch(`https://vendor-data-store.vercel.app/api/post/${id}`,{
           method:"PUT",
           headers:{
               "Content-type":"application/json",
