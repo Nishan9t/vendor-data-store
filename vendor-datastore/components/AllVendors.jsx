@@ -35,7 +35,7 @@ const fetchAllVendors=async()=>{
 
 export default async function AllVendors(){
 
-    const {vendors} = await fetchAllVendors();
+    const vendors = await fetchAllVendors();
 
 
     return(
